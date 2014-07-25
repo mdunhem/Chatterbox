@@ -476,12 +476,12 @@ module.exports = function (grunt) {
 
   // When sails is lifted in production
   grunt.registerTask('prod', [
-    'clean:dev',
+    'clean:build',
     'browserify:dist',
-    'jst:dev',
-    'less:dev',
-    'copy:dev',
-    'coffee:dev',
+    'jst:build',
+    'less:build',
+    'copy:build',
+    'coffee:build',
     'concat',
     'uglify',
     'cssmin',
