@@ -1,0 +1,2 @@
+# Chatterbox
+### a Sails application

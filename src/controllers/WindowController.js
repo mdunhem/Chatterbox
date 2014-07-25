@@ -1,0 +1,4 @@
+var WindowController = function () {
+    // body...
+};
+
