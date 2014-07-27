@@ -1,7 +1,7 @@
 {
   "name": "Chatterbox",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a Sails application",
   "dependencies": {
     "sails": "0.9.16",
@@ -22,9 +22,9 @@
     "debug": "node debug main.js"
   },
   "main": "main.js",
-  "repository": "",
-  "author": "",
-  "license": "",
+  "repository": "https://github.com/mdunhem/Chatterbox",
+  "author": "Mikael Dunhem",
+  "license": "MIT",
   "devDependencies": {
     "grunt-browserify": "^2.1.3"
   }

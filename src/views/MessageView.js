@@ -2,6 +2,10 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
 
+    tagName: 'dl',
+
+    className: 'dl-horizontal',
+
     initialize: function() {
         this.listenTo(dispatcher, 'chat:message', this.addMessage);
     },

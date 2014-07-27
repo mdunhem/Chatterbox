@@ -40,7 +40,10 @@ _.extend(ApplicationController.prototype, Backbone.Events, {
     },
 
     initViews: function() {
-        this.messageView = new MessageView({ el: '#messages' });
+        var messagesElement = document.getElementById('messages');
+        this.messageView = new MessageView();
+        messagesElement.parentNode.replaceChild(this.messageView.el, messagesElement);
+
         this.chatForm = new ChatForm({ el: '#chatForm' });
     },
 
