@@ -41,10 +41,13 @@ _.extend(ApplicationController.prototype, Backbone.Events, {
 
     initViews: function() {
         var messagesElement = document.getElementById('messages');
+        var chatFormElement = document.getElementById('chatForm');
+
         this.messageView = new MessageView();
         messagesElement.parentNode.replaceChild(this.messageView.el, messagesElement);
 
-        this.chatForm = new ChatForm({ el: '#chatForm' });
+        this.chatForm = new ChatForm();
+        chatFormElement.parentNode.replaceChild(this.chatForm.el, chatFormElement);
     },
 
     initSocketEventMessages: function() {
