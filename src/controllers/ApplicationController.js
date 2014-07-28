@@ -4,6 +4,7 @@ var MessageView = require('../views/MessageView');
 var ChatForm = require('../views/ChatForm');
 var JoinForm = require('../views/JoinForm');
 var UserJoinedAlert = require('../views/UserJoinedAlert');
+var UserIsTypingLabel = require('../views/UserIsTypingLabel');
 
 var io = window.io;
 
@@ -35,19 +36,30 @@ _.extend(ApplicationController.prototype, Backbone.Events, {
     },
 
     initEvents: function() {
+        var self = this;
         window.dispatcher = _.clone(Backbone.Events);
         this.listenTo(dispatcher, 'message:new', this.sendMessage);
+        this.listenTo(dispatcher, 'message:typing', function() {
+            self.userIsTypingLabel.show();
+        });
+        this.listenTo(dispatcher, 'message:notTyping', function() {
+            self.userIsTypingLabel.hide();
+        });
     },
 
     initViews: function() {
         var messagesElement = document.getElementById('messages');
         var chatFormElement = document.getElementById('chatForm');
+        var userIsTypingLabelElement = document.getElementById('userIsTypingLabel');
 
         this.messageView = new MessageView();
         messagesElement.parentNode.replaceChild(this.messageView.el, messagesElement);
 
         this.chatForm = new ChatForm();
         chatFormElement.parentNode.replaceChild(this.chatForm.el, chatFormElement);
+
+        this.userIsTypingLabel = new UserIsTypingLabel();
+        userIsTypingLabelElement.parentNode.replaceChild(this.userIsTypingLabel.el, userIsTypingLabelElement);
     },
 
     initSocketEventMessages: function() {

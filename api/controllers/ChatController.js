@@ -43,11 +43,24 @@ module.exports = {
 
   message: function (request, response) {
     var message = request.param('message');
-    var io = sails.io;
     var socket = request.socket;
 
     socket.broadcast.to(this.roomName).emit('chat.message', message, socket.username);
 
+  },
+
+  typing: function (request, response) {
+    var isTyping = request.param('isTyping');
+    var socket = request.socket;
+    var method;
+
+    if (isTyping) {
+      method = 'chat:typing';
+    } else {
+      method = 'chat:notTyping';
+    }
+
+    socket.broadcast.to(this.roomName).emit(method, socket.username);
   }
 
 };
