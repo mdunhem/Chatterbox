@@ -64,6 +64,8 @@ module.exports = Backbone.View.extend({
             } else {
                 dispatcher.trigger('message:notTyping');
             }
+        } else {
+            dispatcher.trigger('message:notTyping');
         }
     },
 
