@@ -47,6 +47,11 @@ module.exports.routes = {
   '/join': {
     controller: 'ChatController',
     action: 'join'
+  },
+
+  '/typing': {
+    controller: 'ChatController',
+    action: 'typing'
   }
 
   /*

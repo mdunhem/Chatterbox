@@ -1,8 +1,8 @@
 {
   "name": "Chatterbox",
   "private": true,
-  "version": "0.1.0",
-  "description": "a Sails application",
+  "version": "1.0.0",
+  "description": "A simple Sails.js chat app",
   "dependencies": {
     "sails": "0.9.16",
     "grunt": "0.4.1",

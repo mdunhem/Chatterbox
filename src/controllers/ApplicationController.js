@@ -40,10 +40,10 @@ _.extend(ApplicationController.prototype, Backbone.Events, {
         window.dispatcher = _.clone(Backbone.Events);
         this.listenTo(dispatcher, 'message:new', this.sendMessage);
         this.listenTo(dispatcher, 'message:typing', function() {
-            self.userIsTypingLabel.show();
+            socket.post('/typing', { isTyping: true });
         });
         this.listenTo(dispatcher, 'message:notTyping', function() {
-            self.userIsTypingLabel.hide();
+            socket.post('/typing', { isTyping: false });
         });
     },
 
@@ -63,8 +63,19 @@ _.extend(ApplicationController.prototype, Backbone.Events, {
     },
 
     initSocketEventMessages: function() {
+        var self = this;
+
         socket.on('chat.message', function (message, username) {
             dispatcher.trigger('chat:message', message, username);
+        });
+
+        socket.on('chat:typing', function (username) {
+            self.userIsTypingLabel.setUsername(username);
+            self.userIsTypingLabel.show();
+        });
+
+        socket.on('chat:notTyping', function (username) {
+            self.userIsTypingLabel.hide();
         });
 
         socket.on('user joined', function (username) {
